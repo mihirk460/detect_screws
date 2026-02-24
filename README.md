@@ -1,11 +1,11 @@
 # Screw Detection
 
-Computer vision system for detecting and classifying screw types (2x6, 3x8, 3x8 with Loctite) using RF-DETR and YOLO models.
+Computer vision system using RF-DETR and YOLO models for screw detection and assembly line poka-yoke (error-proofing). Includes image capture, inference CLI, and operator GUI.
 
 ## Setup
 
 ```bash
-pip install opencv-python ultralytics rfdetr pillow numpy
+pip install opencv-python ultralytics rfdetr pillow numpy pyside6
 ```
 
 ## Usage
@@ -52,9 +52,29 @@ Select a model at startup, then use the window controls:
 
 Bounding box color indicates confidence: blue (low) → green (mid) → red (high).
 
+### Assembly Line Operator GUI
+
+```bash
+python run_gui.py
+```
+
+**Workflow:**
+1. Enter serial #, hardware revision, operator name, checked-by name
+2. Click **Count Screws** → camera confirms 28 screws on desk (5 stable frames required)
+3. Install screws one by one → live count shows progress
+4. Camera auto-detects when all screws are removed (5 stable frames of 0 screws)
+5. Click **Submit** → build data logged
+
+**Controls:**
+- **Bypass Camera Check** — skip count verification (for testing)
+- **Progress bar** — shows screws installed (0 → 28) during the build
+- Camera feed shows live count and red crop outline
+
+---
+
 ## Models
 
-Stored in `models/`. All models detect screw types trained on Roboflow datasets.
+Stored in `models/`. RF-DETR optimized for inference; YOLO for comparison. Currently trained to detect screws in general (screw type classification planned for future model).
 
 | Model | Type | mAP | Dataset |
 |-------|------|-----|---------|
@@ -68,7 +88,8 @@ Stored in `models/`. All models detect screw types trained on Roboflow datasets.
 ```
 detect_screws/
 ├── img_capture.py       # Image capture tool
-├── run_inference.py     # Inference tool
+├── run_inference.py     # Inference tool (CLI)
+├── run_gui.py           # Assembly line operator GUI (PySide6)
 ├── models/              # Trained model weights (.pt)
 └── images/              # Captured image datasets
     ├── 2x6/

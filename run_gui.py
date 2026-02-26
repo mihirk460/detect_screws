@@ -5,6 +5,8 @@ Workflow:
   Fill form → Count Screws (confirms 28 on desk) → Install screws → Submit
 
 Run: python run_gui.py
+
+Uses PyQt6 for GUI (PySide6 has platform plugin issues on macOS).
 """
 
 import sys
@@ -15,13 +17,13 @@ from collections import deque
 from datetime import datetime
 from PIL import Image
 
-from PySide6.QtWidgets import (
+from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QHBoxLayout, QVBoxLayout,
     QLabel, QLineEdit, QComboBox, QPushButton, QProgressBar,
     QGroupBox, QFormLayout, QSizePolicy,
 )
-from PySide6.QtCore import Qt, QThread, Signal
-from PySide6.QtGui import QImage, QPixmap, QFont
+from PyQt6.QtCore import Qt, QThread, pyqtSignal as Signal
+from PyQt6.QtGui import QImage, QPixmap, QFont
 
 # ---------------------------------------------------------------------------
 # Constants

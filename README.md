@@ -5,7 +5,7 @@ Computer vision system using RF-DETR and YOLO models for screw detection and ass
 ## Setup
 
 ```bash
-pip install opencv-python ultralytics rfdetr pillow numpy pyside6
+pip install opencv-python ultralytics rfdetr pillow numpy pyqt6
 ```
 
 ## Usage

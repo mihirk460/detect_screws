@@ -8,7 +8,7 @@ Screw detection system using YOLO and RF-DETR models to identify screw types fro
 
 - `img_capture.py` — Capture images from camera and save to labeled folders. Run with `--stereo` for stereo camera (uses left 1920x1080 half of 3840x1080 frame).
 - `run_inference.py` — Run detection inference. Use `--image <path>` for single image or `--live [--stereo]` for live camera feed.
-- `run_gui.py` — PySide6 operator GUI for assembly line screw tracking. Confirms 28 screws on desk before build starts, confirms 0 screws after build completes. Run with `python run_gui.py`.
+- `run_gui.py` — PyQt6 operator GUI for assembly line screw tracking. Confirms 28 screws on desk before build starts, confirms 0 screws after build completes. Run with `python run_gui.py`.
 
 ## Models
 
